@@ -1,0 +1,28 @@
+.main-title {
+    color: #105718;
+}
+
+.form-control {
+    border-right: none;
+}
+
+.form-control:focus {
+    border-color: #cccc;
+    border-right: none;
+    box-shadow: none;
+}
+
+.input-group-text {
+    background-color: transparent;
+    color: #105718;
+}
+
+.card-title {
+    font-size: 2rem
+}
+
+#circle-status {
+    font-size: 10px;
+    display: inline-block;
+    margin-right: 4px;
+}
