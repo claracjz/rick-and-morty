@@ -37,3 +37,13 @@ async function getEpisodeDataFromURL(url) {
         console.log(error)
     }
 }
+
+async function getCharacterById(characterId) {
+    try {
+        const result = await api.get(`/character/${characterId}`);
+
+        return result.data;
+    } catch (error) {
+        console.log(error);
+    }
+}

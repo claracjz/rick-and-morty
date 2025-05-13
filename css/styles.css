@@ -1,3 +1,9 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 .main-title {
     color: #1f2821;
 }
@@ -18,7 +24,7 @@
 }
 
 .card-title {
-    font-size: 2rem
+    font-size: 2rem;
 }
 
 #circle-status {
@@ -49,4 +55,5 @@ footer {
 .character-card {
     background-color: #3e3f40;
     color: #ffff;
+    cursor: pointer;
 }

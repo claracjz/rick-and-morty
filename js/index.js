@@ -32,8 +32,15 @@ function renderCharactersList(characters) {
     row.innerHTML = "";
 
     for (const character of characters) {
+        let characterName = character.name;
+
+        if (characterName.length > 18) {
+            characterName = characterName.slice(0, 18).concat("...");
+        }
+
+
         const card = `
-         <div class="card mb-3 character-card">
+         <div class="card mb-3 character-card" onclick="viewCharacterDetail(${character.id})">
                         <div class="row g-0">
                           <div class="col-12 col-md-5">
                             <div class="object-fit-fill border rounded h-100">
@@ -43,7 +50,7 @@ function renderCharactersList(characters) {
                           </div>
                           <div class="col-12 col-md-7">
                             <div class="card-body fw-bolder">
-                              <h2 class="card-title">${character.name}</h2>
+                              <h2 class="card-title">${characterName}</h2>
 
                               <p class="card-text">
                                 <small>
@@ -74,29 +81,6 @@ function renderCharactersList(characters) {
         row.appendChild(col);
     }
 }
-
-async function renderFooterContent() {
-    const totalCharacters = await getTotalByFeature("character");
-    const totalLocations = await getTotalByFeature("location");
-    const totalEpisodes = await getTotalByFeature("episode");
-
-
-    const spanTotalCharacters = document.getElementById("total-characters");
-    spanTotalCharacters.innerText = totalCharacters;
-
-    const spanTotalLocations = document.getElementById("total-locations");
-    spanTotalLocations.innerText = totalLocations;
-
-    const spanTotalEpisodes = document.getElementById("total-episodes");
-    spanTotalEpisodes.innerText = totalEpisodes;
-
-    const spanDevName = document.getElementById("dev-name");
-    spanDevName.innerText = "Ana Vitória";
-
-    const spanCurrentYear = document.getElementById("current-year");
-    spanCurrentYear.innerText = new Date().getFullYear()
- 
-};
 
 function renderPagination(prevPage, nextPage) {
 const prevPageNumber = !prevPage ? 0 : prevPage.split("?page=")[1];
@@ -146,19 +130,8 @@ const nextPageNumber = !nextPage ? 0 : nextPage.split("?page=")[1];
 
 }
 
-function mapCharacterStatus(characterStatus) {
-    switch (characterStatus) {
-        case "Alive":
-            return {
-                color: "success"
-            };
-        case "Dead":
-            return {
-                color: "danger"
-            };
-        default:
-            return {
-                color: "secondary"
-            };
-    }
+function viewCharacterDetail(characterId) {
+    window.location.href = `detail.html?character=${characterId}`
 }
+
+
