@@ -1,8 +1,10 @@
 document.addEventListener("DOMContentLoaded", main);
 
+
 async function main() {
 
     loadMainContent(1);
+    characterInputSearch();
     renderFooterContent();
     
 }
@@ -133,5 +135,42 @@ const nextPageNumber = !nextPage ? 0 : nextPage.split("?page=")[1];
 function viewCharacterDetail(characterId) {
     window.location.href = `detail.html?character=${characterId}`
 }
+
+function characterInputSearch(){
+  const input = document.getElementById("search-input");
+
+  input.addEventListener('input', async () => {
+    const searchedCharacter = input.value.trim().toLowerCase();
+
+    if (searchedCharacter === '') {
+      loadMainContent(1);
+      return;
+    }
+
+      try {
+        const characters = await searchCharacterByName(searchedCharacter);
+
+
+        for (const character of characters) {
+        const lastEpisodeUrl = character.episode[character.episode.length - 1];
+
+        const episodeName = await getEpisodeDataFromURL(lastEpisodeUrl);
+
+        character.episode = {
+            url: lastEpisodeUrl,
+            name: episodeName,
+        }
+    }
+
+        renderCharactersList(characters);
+
+      } catch(error) {
+        console.error('Erro ao buscar personagem: ', error);
+         renderCharactersList([]);
+      }
+  })
+}
+
+
 
 

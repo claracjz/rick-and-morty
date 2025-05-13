@@ -44,7 +44,7 @@ function renderCharacterCard(character) {
                             </div>
                           </div>
                           <div class="col-12 col-md-7">
-                            <div class="card-body fw-bolder">
+                            <div class="card-body fs-3 fw-bolder">
                               <h2 class="card-title">${character.name}</h2>
 
                               <p class="card-text">

@@ -47,3 +47,12 @@ async function getCharacterById(characterId) {
         console.log(error);
     }
 }
+
+async function searchCharacterByName(name) {
+    try {
+        const result = await api.get(`/character/?name=${name}`);
+        return result.data.results;
+    } catch (error) {
+        console.log(error);
+    }
+}
