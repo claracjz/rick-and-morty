@@ -9,7 +9,10 @@
 }
 
 .form-control {
+    height: 3rem;
+    border-radius: 30px;
     border-right: none;
+
 }
 
 .form-control:focus {
@@ -19,6 +22,7 @@
 }
 
 .input-group-text {
+    border-radius: 30px;
     background-color: transparent;
     color: #105718;
 }
